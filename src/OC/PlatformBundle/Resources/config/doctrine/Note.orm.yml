@@ -1,0 +1,47 @@
+OC\PlatformBundle\Entity\Note:
+    type: entity
+    table: note
+    indexes:
+        etudiant_id_idx:
+            columns:
+                - etudiant_id
+        devoir_id_idx:
+            columns:
+                - devoir_id
+    id:
+        id:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        note:
+            type: float
+            nullable: true
+            precision: 18
+            scale: 2
+    manyToOne:
+        devoir:
+            targetEntity: Devoir
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                devoir_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        etudiant:
+            targetEntity: Etudiant
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                etudiant_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

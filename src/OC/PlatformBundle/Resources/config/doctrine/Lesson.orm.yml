@@ -1,0 +1,101 @@
+OC\PlatformBundle\Entity\Lesson:
+    type: entity
+    table: lesson
+    indexes:
+        course_id_idx:
+            columns:
+                - course_id
+        groupe_id_idx:
+            columns:
+                - groupe_id
+        room_id_idx:
+            columns:
+                - room_id
+        teacher_id_idx:
+            columns:
+                - teacher_id
+    id:
+        id:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        start:
+            type: datetime
+            nullable: true
+        end:
+            type: datetime
+            nullable: true
+        num:
+            type: bigint
+            nullable: true
+            options:
+                unsigned: false
+        type:
+            type: string
+            nullable: true
+            length: 2
+            options:
+                fixed: false
+        duration:
+            type: bigint
+            nullable: true
+            options:
+                unsigned: false
+        manual:
+            type: boolean
+            nullable: true
+            options:
+                default: '1'
+        color:
+            type: string
+            nullable: true
+            length: 10
+            options:
+                fixed: false
+    manyToOne:
+        groupe:
+            targetEntity: Groupe
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                groupe_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        course:
+            targetEntity: Course
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                course_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        room:
+            targetEntity: Room
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                room_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        teacher:
+            targetEntity: Teacher
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                teacher_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

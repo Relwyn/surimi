@@ -1,0 +1,53 @@
+OC\PlatformBundle\Entity\Teacher:
+    type: entity
+    table: teacher
+    uniqueConstraints:
+        shortname:
+            columns:
+                - shortname
+    id:
+        id:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        shortname:
+            type: string
+            nullable: false
+            length: 30
+            options:
+                fixed: false
+        name:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        surname:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        cnu:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+        statut:
+            type: string
+            nullable: false
+            length: 20
+            options:
+                fixed: false
+        dept:
+            type: string
+            nullable: true
+            length: 20
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

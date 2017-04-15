@@ -1,0 +1,72 @@
+OC\PlatformBundle\Entity\Etudiant:
+    type: entity
+    table: etudiant
+    id:
+        id:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        gender:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        fname:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+        lname:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+        adr:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        cp:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+        city:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+        apogee:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+        ordre:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+        mail:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+        avatar:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

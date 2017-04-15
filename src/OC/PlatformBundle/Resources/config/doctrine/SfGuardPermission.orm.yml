@@ -1,0 +1,55 @@
+OC\PlatformBundle\Entity\SfGuardPermission:
+    type: entity
+    table: sf_guard_permission
+    uniqueConstraints:
+        name:
+            columns:
+                - name
+    id:
+        id:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        description:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+        createdAt:
+            type: datetime
+            nullable: false
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: false
+            column: updated_at
+    manyToMany:
+        group:
+            targetEntity: SfGuardGroup
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: permission
+            inversedBy: null
+            joinTable: null
+            orderBy: null
+        user:
+            targetEntity: SfGuardUser
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: permission
+            inversedBy: null
+            joinTable: null
+            orderBy: null
+    lifecycleCallbacks: {  }

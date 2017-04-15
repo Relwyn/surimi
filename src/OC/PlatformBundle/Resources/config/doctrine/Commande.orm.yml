@@ -1,0 +1,38 @@
+OC\PlatformBundle\Entity\Commande:
+    type: entity
+    table: commande
+    indexes:
+        utilisateurcrous_id_idx:
+            columns:
+                - utilisateurcrous_id
+        produit_id_idx:
+            columns:
+                - produit_id
+    id:
+        id:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        utilisateurcrousId:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            column: utilisateurcrous_id
+        produitId:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            column: produit_id
+        nb:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+    lifecycleCallbacks: {  }

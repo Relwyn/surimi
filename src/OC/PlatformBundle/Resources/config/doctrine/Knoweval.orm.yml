@@ -1,0 +1,41 @@
+OC\PlatformBundle\Entity\Knoweval:
+    type: entity
+    table: knoweval
+    indexes:
+        evaluation_id_idx:
+            columns:
+                - evaluation_id
+        teacher_id_idx:
+            columns:
+                - teacher_id
+    id:
+        id:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    manyToOne:
+        evaluation:
+            targetEntity: Evaluation
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                evaluation_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        teacher:
+            targetEntity: Teacher
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                teacher_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,53 @@
+OC\PlatformBundle\Entity\Traininginfo:
+    type: entity
+    table: traininginfo
+    id:
+        id:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        dept:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        training:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        semester:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        ue:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        nbgcm:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+        nbgtd:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+        nbgtp:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+    lifecycleCallbacks: {  }

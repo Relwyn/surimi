@@ -1,0 +1,97 @@
+OC\PlatformBundle\Entity\Disponibilite:
+    type: entity
+    table: disponibilite
+    indexes:
+        teacher_id_idx:
+            columns:
+                - teacher_id
+    id:
+        id:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        dept:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        jour:
+            type: string
+            nullable: false
+            length: 20
+            options:
+                fixed: false
+        h8:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+        h9:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+        h10:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+        h11:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+        h12:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+        h13:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+        h14:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+        h15:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+        h16:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+        h17:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+        comment:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+    manyToOne:
+        teacher:
+            targetEntity: Teacher
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                teacher_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,32 @@
+OC\PlatformBundle\Entity\Utilisateurcrous:
+    type: entity
+    table: utilisateurcrous
+    id:
+        id:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        numero:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+        fname:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+        lname:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

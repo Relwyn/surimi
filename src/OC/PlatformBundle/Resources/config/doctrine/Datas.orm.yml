@@ -1,0 +1,53 @@
+OC\PlatformBundle\Entity\Datas:
+    type: entity
+    table: datas
+    indexes:
+        etudiant_id_idx:
+            columns:
+                - etudiant_id
+        lesson_id_idx:
+            columns:
+                - lesson_id
+    id:
+        id:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        reason:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        piece:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        justified:
+            type: boolean
+            nullable: false
+        lessonId:
+            type: bigint
+            nullable: true
+            options:
+                unsigned: false
+            column: lesson_id
+    manyToOne:
+        etudiant:
+            targetEntity: Etudiant
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                etudiant_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

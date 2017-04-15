@@ -1,0 +1,102 @@
+OC\PlatformBundle\Entity\Course:
+    type: entity
+    table: course
+    indexes:
+        subject_id_idx:
+            columns:
+                - subject_id
+        traininginfo_id_idx:
+            columns:
+                - traininginfo_id
+    id:
+        id:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        semester:
+            type: string
+            nullable: false
+            length: 30
+            options:
+                fixed: false
+        module:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        description:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+        nbcmhours:
+            type: float
+            nullable: true
+            precision: 18
+            scale: 2
+        nbtdhours:
+            type: float
+            nullable: true
+            precision: 18
+            scale: 2
+        nbtphours:
+            type: float
+            nullable: true
+            precision: 18
+            scale: 2
+        nbgcm:
+            type: bigint
+            nullable: true
+            options:
+                unsigned: false
+        nbgtd:
+            type: bigint
+            nullable: true
+            options:
+                unsigned: false
+        nbgtp:
+            type: bigint
+            nullable: true
+            options:
+                unsigned: false
+        dept:
+            type: string
+            nullable: true
+            length: 20
+            options:
+                fixed: false
+        comment:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+    manyToOne:
+        subject:
+            targetEntity: Subject
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                subject_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        traininginfo:
+            targetEntity: Traininginfo
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                traininginfo_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

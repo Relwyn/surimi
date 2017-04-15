@@ -1,0 +1,34 @@
+OC\PlatformBundle\Entity\Delay:
+    type: entity
+    table: delay
+    indexes:
+        datas_id_idx:
+            columns:
+                - datas_id
+    id:
+        id:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        minuts:
+            type: bigint
+            nullable: true
+            options:
+                unsigned: false
+    manyToOne:
+        datas:
+            targetEntity: Datas
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                datas_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,53 @@
+OC\PlatformBundle\Entity\Devoir:
+    type: entity
+    table: devoir
+    indexes:
+        evaluation_id_idx:
+            columns:
+                - evaluation_id
+    id:
+        id:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        nom:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        coef:
+            type: float
+            nullable: false
+            precision: 20
+            scale: 18
+        jour:
+            type: date
+            nullable: true
+        final:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+        limite:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+    manyToOne:
+        evaluation:
+            targetEntity: Evaluation
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                evaluation_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

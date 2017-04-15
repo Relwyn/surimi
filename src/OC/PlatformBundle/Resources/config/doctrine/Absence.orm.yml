@@ -1,0 +1,28 @@
+OC\PlatformBundle\Entity\Absence:
+    type: entity
+    table: absence
+    indexes:
+        datas_id_idx:
+            columns:
+                - datas_id
+    id:
+        id:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    manyToOne:
+        datas:
+            targetEntity: Datas
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                datas_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

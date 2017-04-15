@@ -1,0 +1,30 @@
+OC\PlatformBundle\Entity\Week:
+    type: entity
+    table: week
+    uniqueConstraints:
+        dept:
+            columns:
+                - dept
+    id:
+        id:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        dept:
+            type: string
+            nullable: false
+            length: 20
+            options:
+                fixed: false
+        students:
+            type: date
+            nullable: true
+        teachers:
+            type: date
+            nullable: true
+    lifecycleCallbacks: {  }

@@ -1,0 +1,65 @@
+OC\PlatformBundle\Entity\Evaluation:
+    type: entity
+    table: evaluation
+    indexes:
+        course_id_idx:
+            columns:
+                - course_id
+        groupe_id_idx:
+            columns:
+                - groupe_id
+        teacher_id_idx:
+            columns:
+                - teacher_id
+    uniqueConstraints:
+        course_id:
+            columns:
+                - course_id
+    id:
+        id:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        password:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+    manyToOne:
+        course:
+            targetEntity: Course
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                course_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        groupe:
+            targetEntity: Groupe
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                groupe_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        teacher:
+            targetEntity: Teacher
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                teacher_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

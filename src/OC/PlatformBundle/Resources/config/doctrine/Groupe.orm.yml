@@ -1,0 +1,60 @@
+OC\PlatformBundle\Entity\Groupe:
+    type: entity
+    table: groupe
+    id:
+        id:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: true
+            length: 30
+            options:
+                fixed: false
+        dept:
+            type: string
+            nullable: true
+            length: 20
+            options:
+                fixed: false
+        semester:
+            type: string
+            nullable: false
+            length: 30
+            options:
+                fixed: false
+        surgroupe:
+            type: bigint
+            nullable: true
+            options:
+                unsigned: false
+        nbgroupes:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+        defaulttype:
+            type: string
+            nullable: false
+            length: 5
+            options:
+                fixed: false
+        maingroupe:
+            type: string
+            nullable: true
+            length: 20
+            options:
+                fixed: false
+        start:
+            type: date
+            nullable: false
+        end:
+            type: date
+            nullable: false
+    lifecycleCallbacks: {  }

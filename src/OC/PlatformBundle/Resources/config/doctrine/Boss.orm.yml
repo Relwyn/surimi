@@ -1,0 +1,41 @@
+OC\PlatformBundle\Entity\Boss:
+    type: entity
+    table: boss
+    indexes:
+        groupe_id_idx:
+            columns:
+                - groupe_id
+        teacher_id_idx:
+            columns:
+                - teacher_id
+    id:
+        id:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    manyToOne:
+        groupe:
+            targetEntity: Groupe
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                groupe_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        teacher:
+            targetEntity: Teacher
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                teacher_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

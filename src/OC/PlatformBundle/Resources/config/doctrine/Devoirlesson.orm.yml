@@ -1,0 +1,41 @@
+OC\PlatformBundle\Entity\Devoirlesson:
+    type: entity
+    table: devoirlesson
+    indexes:
+        devoir_id_idx:
+            columns:
+                - devoir_id
+        lesson_id_idx:
+            columns:
+                - lesson_id
+    id:
+        id:
+            type: bigint
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    manyToOne:
+        devoir:
+            targetEntity: Devoir
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                devoir_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        lesson:
+            targetEntity: Lesson
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                lesson_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }
