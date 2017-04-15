@@ -2,7 +2,7 @@
 
 oc_platform:
     resource: "@OCPlatformBundle/Resources/config/routing.yml"
-    prefix:   /dashboard
+    prefix:   /platform
 
 # On inclut également les routes de notre CoreBundle, sans préfixe
 oc_core:

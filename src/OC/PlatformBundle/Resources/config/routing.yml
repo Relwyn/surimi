@@ -2,6 +2,6 @@
 
     
 oc_platform_view:
-    path:      /
+    path:      /dashboard
     defaults:
         _controller: OCPlatformBundle:Advert:menu
