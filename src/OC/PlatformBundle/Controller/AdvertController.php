@@ -10,7 +10,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class AdvertController extends Controller
 {
-  public function menuAction($limit)
+  public function menuAction()
   {
     // On fixe en dur une liste ici, bien entendu par la suite on la récupérera depuis la BDD !
 
