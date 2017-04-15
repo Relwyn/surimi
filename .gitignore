@@ -7,3 +7,9 @@
 !var/sessions/.gitkeep
 /vendor/
 /web/bundles/
+Supprimerait .idea/inspectionProfiles/
+Supprimerait .idea/modules.xml
+Supprimerait .idea/mooc-symfony-iteration-8.iml
+Supprimerait .idea/workspace.xml
+Supprimerait src/OC/PlatformBundle/Entity/
+Supprimerait src/OC/PlatformBundle/Repository/
