@@ -25,7 +25,9 @@
         "doctrine/doctrine-fixtures-bundle": "~2.2",
         "symfony/assetic-bundle": "^2.7.1",
         "leafo/scssphp": "~0.6",
-        "patchwork/jsqueeze": "~1.0"
+        "patchwork/jsqueeze": "~1.0",
+        "ob/highcharts-bundle": "1.*",
+        "zendframework/zend-json": "2.3.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "~3.0",

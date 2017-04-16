@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new OC\PlatformBundle\OCPlatformBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
+            new Ob\HighchartsBundle\ObHighchartsBundle(),
             // Il faut enregistrer notre nouveau bundle :
             new OC\CoreBundle\OCCoreBundle(),
         );
