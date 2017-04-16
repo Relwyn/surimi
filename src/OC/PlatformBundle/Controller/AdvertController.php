@@ -6,6 +6,8 @@ namespace OC\PlatformBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Ob\HighchartsBundle\Highcharts\Highchart;
+use Zend\Json\Expr;
+use Ob\HighchartsBundle\DependencyInjection\ObHighchartsExtension;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
