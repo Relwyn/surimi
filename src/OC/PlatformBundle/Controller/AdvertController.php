@@ -6,6 +6,7 @@ namespace OC\PlatformBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Ob\HighchartsBundle\Highcharts\Highchart;
+use Doctrine\ORM\EntityRepository;
 use Zend\Json\Expr;
 use Ob\HighchartsBundle\DependencyInjection\ObHighchartsExtension;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,6 +18,26 @@ class AdvertController extends Controller
   {
     // On fixe en dur une liste ici, bien entendu par la suite on la récupérera depuis la BDD !
       // Chart
+
+//      $qb->select('p')
+//          ->where('YEAR(p.postDate) = :year')
+//          ->andWhere('MONTH(p.postDate) = :month')
+//          ->andWhere('DAY(p.postDate) = :day');
+//
+//      $qb->setParameter('year', $year)
+//          ->setParameter('month', $month)
+//          ->setParameter('day', $day);
+//
+
+//      $em = $this->getDoctrine()->getEntityManager();
+//      $datas = $em->getRepository('OCPlatformBundle:Datas')->findAll();
+//      $datas = $em->getRepository('OCPlatformBundle:Datas')->findAll(array(), Query::HYDRATE_ARRAY);
+
+
+
+
+
+
       $sellsHistory = array(
           array(
               "name" => "DUT 1",
@@ -46,7 +67,8 @@ class AdvertController extends Controller
       $ob->series($sellsHistory);
 
       return $this->render('OCPlatformBundle:Advert:menu.html.twig', array(
-          'linechart' => $ob
+          'linechart' => $ob,
+//          'datas' =>$datas
       ));
   }
 }

@@ -50,6 +50,13 @@ class Datas
     private $lessonId;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="datetime", nullable=false)
+     */
+    private $date = 'CURRENT_TIMESTAMP';
+
+    /**
      * @var \OC\PlatformBundle\Entity\Etudiant
      *
      * @ORM\ManyToOne(targetEntity="OC\PlatformBundle\Entity\Etudiant")
@@ -165,6 +172,30 @@ class Datas
     public function getLessonId()
     {
         return $this->lessonId;
+    }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     *
+     * @return Datas
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
     }
 
     /**

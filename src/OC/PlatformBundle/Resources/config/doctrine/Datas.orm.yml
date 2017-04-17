@@ -39,6 +39,11 @@ OC\PlatformBundle\Entity\Datas:
             options:
                 unsigned: false
             column: lesson_id
+        date:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
     manyToOne:
         etudiant:
             targetEntity: Etudiant
