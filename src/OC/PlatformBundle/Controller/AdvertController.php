@@ -62,7 +62,7 @@ class AdvertController extends Controller
 
 
 
-      $sellsHistory = array(
+      $absence = array(
           array(
               "name" => "Absences Justifiées",
               "data" => array($moisjust[0],$moisjust[1],$moisjust[2],$moisjust[3],$moisjust[4],$moisjust[5],$moisjust[6],$moisjust[7],$moisjust[8],$moisjust[9],$moisjust[10],$moisjust[11])
@@ -88,7 +88,7 @@ class AdvertController extends Controller
       $ob->xAxis->title(array('text'  => "Mois"));
       $ob->xAxis->categories($dates);
 
-      $ob->series($sellsHistory);
+      $ob->series($absence);
 
       return $this->render('OCPlatformBundle:Advert:menu.html.twig', array(
           'linechart' => $ob,
