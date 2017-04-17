@@ -33,7 +33,7 @@ class AdvertController extends Controller
 //      $datas = $em->getRepository('OCPlatformBundle:Datas')->findAll();
 //      $datas = $em->getRepository('OCPlatformBundle:Datas')->findAll(array(), Query::HYDRATE_ARRAY);
 
-
+//test
 
 
 
