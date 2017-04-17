@@ -64,11 +64,11 @@ class AdvertController extends Controller
 
       $sellsHistory = array(
           array(
-              "name" => "DUT 1",
+              "name" => "Absences Justifiées",
               "data" => array($moisjust[0],$moisjust[1],$moisjust[2],$moisjust[3],$moisjust[4],$moisjust[5],$moisjust[6],$moisjust[7],$moisjust[8],$moisjust[9],$moisjust[10],$moisjust[11])
           ),
           array(
-              "name" => "DUT 2",
+              "name" => "Absences Injustifiées",
               "data" => array($moisinjust[0],$moisinjust[1],$moisinjust[2],$moisinjust[3],$moisinjust[4],$moisinjust[5],$moisinjust[6],$moisinjust[7],$moisinjust[8],$moisinjust[9],$moisinjust[10],$moisinjust[11])
           ),
 
