@@ -4,6 +4,7 @@
 
 namespace OC\PlatformBundle\Controller;
 
+use Doctrine\ORM\Query;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Ob\HighchartsBundle\Highcharts\Highchart;
 use Doctrine\ORM\EntityRepository;
@@ -29,23 +30,46 @@ class AdvertController extends Controller
 //          ->setParameter('day', $day);
 //
 
-//      $em = $this->getDoctrine()->getEntityManager();
-//      $datas = $em->getRepository('OCPlatformBundle:Datas')->findAll();
-//      $datas = $em->getRepository('OCPlatformBundle:Datas')->findAll(array(), Query::HYDRATE_ARRAY);
+      $em = $this->getDoctrine()->getEntityManager();
+      //$datas = $em->getRepository('OCPlatformBundle:Datas')->find(4);
+      $datas = $em->getRepository('OCPlatformBundle:Datas')->findAll(array(), Query::HYDRATE_ARRAY);
+      $moisjust=new \SplFixedArray(12);
+      $moisinjust=new \SplFixedArray(12);
+      for($i=0;$i<12;$i++)
+      {
+          $moisjust[$i]=0;
+          $moisinjust[$i]=0;
+      }
 
-//test
 
+      foreach ($datas as $data)
+      {
+          if($data!=null)
+          {
+              $mydate = $data->getDate();
+              $month = date("n",strtotime(date_format($mydate,"Y-m-d")));
+              if($data->getJustified())
+              {
+                  $moisjust[$month-1]+=1;
+              }
+              else{
+                  $moisinjust[$month-1]+=1;
+              }
+
+          }
+
+      }
 
 
 
       $sellsHistory = array(
           array(
               "name" => "DUT 1",
-              "data" => array(683, 756, 543, 1208, 617, 990, 1001)
+              "data" => array($moisjust[0],$moisjust[1],$moisjust[2],$moisjust[3],$moisjust[4],$moisjust[5],$moisjust[6],$moisjust[7],$moisjust[8],$moisjust[9],$moisjust[10],$moisjust[11])
           ),
           array(
               "name" => "DUT 2",
-              "data" => array(467, 321, 56, 698, 134, 344, 452)
+              "data" => array($moisinjust[0],$moisinjust[1],$moisinjust[2],$moisinjust[3],$moisinjust[4],$moisinjust[5],$moisinjust[6],$moisinjust[7],$moisinjust[8],$moisinjust[9],$moisinjust[10],$moisinjust[11])
           ),
 
       );
@@ -68,7 +92,7 @@ class AdvertController extends Controller
 
       return $this->render('OCPlatformBundle:Advert:menu.html.twig', array(
           'linechart' => $ob,
-//          'datas' =>$datas
+
       ));
   }
 }
