@@ -25,10 +25,10 @@ jQuery(document).ready(function() {
     /*
         Background slideshow
     */
-    $('.top-content').backstretch("/bundles/thagm2m/assets/img/backgrounds/1.jpg");
-    $('.testimonials-container').backstretch("/bundles/thagm2m/assets/img/backgrounds/2.jpg");
-    $('.call-to-action-container').backstretch("/bundles/thagm2m/assets/img/backgrounds/1.jpg");
-    $('.about-us-container').backstretch("/bundles/thagm2m/assets/img/backgrounds/2.jpg");
+    $('.top-content').backstretch("/bundles/ocplatform/assets/img/backgrounds/1.jpg");
+    $('.testimonials-container').backstretch("/bundles/ocplatform/assets/img/backgrounds/2.jpg");
+    $('.call-to-action-container').backstretch("/bundles/ocplatform/assets/img/backgrounds/1.jpg");
+    $('.about-us-container').backstretch("/bundles/ocplatform/assets/img/backgrounds/2.jpg");
 
     $('a[data-toggle="tab"]').on('shown.bs.tab', function(){
     	$('.testimonials-container').backstretch("resize");

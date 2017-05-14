@@ -78,7 +78,7 @@ class AdvertController extends Controller
       $ob = new Highchart();
       // ID de l'élement de DOM que vous utilisez comme conteneur
       $ob->chart->renderTo('linechart');
-      $ob->title->text('Taux d\'absence par mois');
+      $ob->title->text('');
 
       $ob->yAxis->title(array('text' => "Nombre d'absence"));
 
