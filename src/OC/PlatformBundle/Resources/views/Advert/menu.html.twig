@@ -71,10 +71,6 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a class="scroll-link" href="#menu">MENU</a></li>
                 <li><a class="scroll-link" href="#features">GRAPHE</a></li>
-                <li><a class="scroll-link" href="#testimonials">CLIENTS</a></li>
-                <li><a class="scroll-link" href="#pricing">PLANS</a></li>
-                <li><a class="scroll-link" href="#about-us">ABOUT</a></li>
-                <li><a class="scroll-link" href="#faq">FAQ</a></li>
             </ul>
         </div>
     </div>
@@ -101,8 +97,7 @@
                 </div>
                 <div class="r-form-1-bottom">
                     {% for value in absences %}
-                        <p>{{ value.fname }} {{ value.lname }} en {{ value.gender }}</p>
-
+                        <p>{{ value.fname }} {{ value.lname }} dans le module {{ value.gender }}</p>
 
                     {% endfor %}
 
@@ -129,13 +124,9 @@
     </div>
 </div>
 
-<div class="features-container section-container">
-    <div class="container">
-    </div>
-</div>
 
 <!-- Features -->
-<div class="features-container section-container">
+<div class="features-container section-container-gray-bg">
     <div class="container">
         <div class="row">
             <div class="col-sm-12 features section-description wow fadeIn">

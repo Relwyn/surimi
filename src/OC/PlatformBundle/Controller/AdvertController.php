@@ -5,6 +5,7 @@
 namespace OC\PlatformBundle\Controller;
 
 use Doctrine\ORM\Query;
+use OC\PlatformBundle\Entity\Etudiant;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Ob\HighchartsBundle\Highcharts\Highchart;
 use Doctrine\ORM\QueryBuilder;
@@ -132,10 +133,19 @@ class AdvertController extends Controller
       }
       $tabEtudiant=array();
       $em = $this->getDoctrine()->getEntityManager();
+      $doublon=new Etudiant();
+      $matiere="";
       foreach ($eleveAbs as $eleve){
           $etudiant=$em->getRepository('OCPlatformBundle:Etudiant')->find($eleve['etudiant_id']);
           $etudiant->setGender($eleve['module']);
-          $tabEtudiant[]=$etudiant;
+          if ($doublon->getId()!=$etudiant->getId() or $matiere!=$eleve['module'])
+          {
+              $tabEtudiant[]=$etudiant;
+
+          }
+          $doublon=$etudiant;
+          $matiere=$eleve['module'];
+
       }
 
 
