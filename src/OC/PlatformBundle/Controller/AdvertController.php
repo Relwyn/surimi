@@ -7,6 +7,7 @@ namespace OC\PlatformBundle\Controller;
 use Doctrine\ORM\Query;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Ob\HighchartsBundle\Highcharts\Highchart;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\EntityRepository;
 use Zend\Json\Expr;
 use Ob\HighchartsBundle\DependencyInjection\ObHighchartsExtension;
@@ -30,7 +31,9 @@ class AdvertController extends Controller
 //          ->setParameter('day', $day);
 //
 
+
       $em = $this->getDoctrine()->getEntityManager();
+      
       //$datas = $em->getRepository('OCPlatformBundle:Datas')->find(4);
       $datas = $em->getRepository('OCPlatformBundle:Datas')->findAll(array(), Query::HYDRATE_ARRAY);
       $moisjust=new \SplFixedArray(12);
@@ -40,7 +43,6 @@ class AdvertController extends Controller
           $moisjust[$i]=0;
           $moisinjust[$i]=0;
       }
-
 
       foreach ($datas as $data)
       {
@@ -55,12 +57,8 @@ class AdvertController extends Controller
               else{
                   $moisinjust[$month-1]+=1;
               }
-
           }
-
       }
-
-
 
       $absence = array(
           array(
@@ -71,7 +69,6 @@ class AdvertController extends Controller
               "name" => "Absences Injustifiées",
               "data" => array($moisinjust[0],$moisinjust[1],$moisinjust[2],$moisinjust[3],$moisinjust[4],$moisinjust[5],$moisinjust[6],$moisinjust[7],$moisinjust[8],$moisinjust[9],$moisinjust[10],$moisinjust[11])
           ),
-
       );
 
       $dates = array(
@@ -89,10 +86,32 @@ class AdvertController extends Controller
       $ob->xAxis->categories($dates);
 
       $ob->series($absence);
+//--------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+      $repository = $this->getDoctrine()
+          ->getRepository('OCPlatformBundle:Room');
+
+// createQueryBuilder() automatically selects FROM AppBundle:Product
+// and aliases it to "p"
+      $query = $repository->createQueryBuilder('room')
+          ->where('room.dept = :nom')
+          ->setParameter('nom', 'INFO')
+          ->orderBy('room.id', 'ASC')
+          ->getQuery();
+
+      $salle = $query->getResult();
+
+//--------------------------------------------------------------------------------------------------------------------------------
+
+
 
       return $this->render('OCPlatformBundle:Advert:menu.html.twig', array(
           'linechart' => $ob,
-
+          'salle' => $salle,
       ));
   }
+
 }
