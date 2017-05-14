@@ -133,8 +133,9 @@ class AdvertController extends Controller
       $tabEtudiant=array();
       $em = $this->getDoctrine()->getEntityManager();
       foreach ($eleveAbs as $eleve){
-          $tabEtudiant['module'][]=$eleve['module'];
-          $tabEtudiant['eleve'][]=$em->getRepository('OCPlatformBundle:Etudiant')->find($eleve['etudiant_id']);
+          $etudiant=$em->getRepository('OCPlatformBundle:Etudiant')->find($eleve['etudiant_id']);
+          $etudiant->setGender($eleve['module']);
+          $tabEtudiant[]=$etudiant;
       }
 
 

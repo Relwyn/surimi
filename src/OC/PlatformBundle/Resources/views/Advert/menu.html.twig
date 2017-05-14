@@ -88,8 +88,8 @@
             <div class="col-sm-5 r-form-1-box wow fadeInLeft">
                 <div class="r-form-1-top">
                     <div class="r-form-1-top-left">
-                        <h3>Bienvenue sur Movie2Move</h3>
-                        <p>Maintenant que tu es connecté part jouer !</p>
+                        <h3>Etudiants avec un taux supérieur à 6% d'absences</h3>
+                        <p></p>
 
 
                     </div>
@@ -98,21 +98,26 @@
                     </div>
                 </div>
                 <div class="r-form-1-bottom">
-                    <p>ici c'étais le bloc de connection</p>
+                    {% for value in absences %}
+                        <p>{{ value.fname }} {{ value.lname }} en {{ value.gender }}</p>
+
+
+                    {% endfor %}
+
                 </div>
             </div>
 
             <div class="col-sm-7 text wow fadeInUp">
-                <h1>MOVIE2MOVE</h1>
+                <h1>Tableau de bord</h1>
                 <div class="description">
                     <p class="medium-paragraph">
-                        C'est l'heure du test ! <br>
-                        Cinq images à remettre dans l'ordre chronologique du film choisi sois prêt !
+                         <br>
+
                     </p>
                 </div>
 
                 <div class="top-buttons">
-                    <p> ici il y avait des boutons</p>
+                    <a class="btn btn-warning" href="/platform/dashboard">Retour au menu <i class="fa fa-angle-right"></i> </a>
                 </div>
 
             </div>
@@ -669,14 +674,7 @@
         </div>
     </div>
 </div>
-bande dndsgkjdgfklj
-<br>
 
-{#{% for value in absences %}#}
-    {#{{ value }}#}
-{#{% endfor %}#}
-
-<br>ici
 <!-- inclusion des libraries jQuery et jQuery UI (fichier principal et plugins) -->
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js"></script>
