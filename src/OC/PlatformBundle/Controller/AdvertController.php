@@ -33,7 +33,7 @@ class AdvertController extends Controller
 
 
       $em = $this->getDoctrine()->getEntityManager();
-      
+
       //$datas = $em->getRepository('OCPlatformBundle:Datas')->find(4);
       $datas = $em->getRepository('OCPlatformBundle:Datas')->findAll(array(), Query::HYDRATE_ARRAY);
       $moisjust=new \SplFixedArray(12);
@@ -105,13 +105,47 @@ class AdvertController extends Controller
       $salle = $query->getResult();
 
 //--------------------------------------------------------------------------------------------------------------------------------
+      $repository = $this->getDoctrine()
+          ->getRepository('OCPlatformBundle:Lesson');
+
+      $rawSql = "select module, sum(nbtdhours)+sum(nbcmhours)+sum(nbtphours)+sum(nbgcm)+sum(nbgtd)+sum(nbgtp) as nbHeureTotal from course where module!='' and nbgcm is not null and nbgtd is not null and nbgtp is not null GROUP BY module HAVING nbHeureTotal is not null;";
+
+      $module = $this->getDoctrine()->getConnection()->prepare($rawSql);
+      $module->execute([]);
+      $tabModule=$module->fetchAll();
+
+      $rawSql = "select etudiant_id, module, count(etudiant_id)*sum((unix_timestamp(end)-unix_timestamp(start))/3600) as nbHeureRate from ( select etudiant_id, module, start, end from datas join lesson on lesson.id=lesson_id join course on course.id=lesson.course_id where justified=0 group by etudiant_id, lesson_id) as t2 GROUP BY etudiant_id, module";
+
+      $abs = $this->getDoctrine()->getConnection()->prepare($rawSql);
+      $abs->execute([]);
+      $tabAbs=$abs->fetchAll();
+      $eleveAbs=array();
+      foreach ($tabAbs as $eleve){
+          foreach ($tabModule as $cours){
+              if($eleve['module']==$cours['module']) {
+                  if ($eleve['nbHeureRate']>($cours['nbHeureTotal']*0.06)) {
+                      $eleveAbs[] = $eleve; // faire le calcule avec table au dessus
+                  }
+              }
+          }
+
+      }
+      $tabEtudiant=array();
+      $em = $this->getDoctrine()->getEntityManager();
+      foreach ($eleveAbs as $eleve){
+          $tabEtudiant['module'][]=$eleve['module'];
+          $tabEtudiant['eleve'][]=$em->getRepository('OCPlatformBundle:Etudiant')->find($eleve['etudiant_id']);
+      }
 
 
+//--------------------------------------------------------------------------------------------------------------------------------
 
       return $this->render('OCPlatformBundle:Advert:menu.html.twig', array(
           'linechart' => $ob,
           'salle' => $salle,
+          'absences' =>$tabEtudiant,
       ));
   }
 
 }
+

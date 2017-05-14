@@ -110,11 +110,11 @@
                         Cinq images à remettre dans l'ordre chronologique du film choisi sois prêt !
                     </p>
                 </div>
-                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                    <div class="top-buttons">
-                        <p> ici il y avait des boutons</p>
-                    </div>
-                {% endif %}
+
+                <div class="top-buttons">
+                    <p> ici il y avait des boutons</p>
+                </div>
+
             </div>
 
         </div>
@@ -144,6 +144,7 @@
                 {{ chart(linechart) }}
             </script>
             <div id="linechart" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+
         </div>
 
     </div>
@@ -659,6 +660,7 @@
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
                     labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
+
                 </p>
             </div>
             <div class="modal-footer">
@@ -667,8 +669,14 @@
         </div>
     </div>
 </div>
+bande dndsgkjdgfklj
+<br>
 
+{#{% for value in absences %}#}
+    {#{{ value }}#}
+{#{% endfor %}#}
 
+<br>ici
 <!-- inclusion des libraries jQuery et jQuery UI (fichier principal et plugins) -->
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js"></script>
@@ -684,7 +692,9 @@
 <!--[if lt IE 10]>
 <script src="{{ asset('bundles/ocplatform/assets/js/placeholder.js') }}"></script>
 <![endif]-->
-
+{#{% for test in salle %}#}
+{#<li>{{ test.name|e }}</li>#}
+{#{% endfor %}#}
 {#</body>#}
 {#</html>#}
 
