@@ -8,7 +8,7 @@ use Doctrine\ORM\Query;
 use OC\PlatformBundle\Entity\Etudiant;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Ob\HighchartsBundle\Highcharts\Highchart;
-use OC\PlatformBundle\Repository\roomConflict;
+
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\EntityRepository;
 use Zend\Json\Expr;
@@ -217,12 +217,12 @@ class AdvertController extends Controller
       $sameRoom=$this->getRoomProblem();
       foreach ($sameRoom as $room){
           print_r($room);
-          break;
+
       }
       $sameGroupe=$this->getGroupProblem();
       foreach ($sameGroupe as $room){
           print_r($room);
-          break;
+
       }
 
 
