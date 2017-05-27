@@ -8,15 +8,79 @@ use Doctrine\ORM\Query;
 use OC\PlatformBundle\Entity\Etudiant;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Ob\HighchartsBundle\Highcharts\Highchart;
+use OC\PlatformBundle\Repository\roomConflict;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\EntityRepository;
 use Zend\Json\Expr;
 use Ob\HighchartsBundle\DependencyInjection\ObHighchartsExtension;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use OC\PlatformBundle\Entity\Lesson;
 
 class AdvertController extends Controller
 {
+    public function getRoomProblem()
+    {
+        $em = $this->getDoctrine()->getManager()->getRepository('OCPlatformBundle:Lesson');
+        $room= $this->getDoctrine()->getManager()->getRepository('OCPlatformBundle:Room');
+        $teacher = $this->getDoctrine()->getManager()->getRepository('OCPlatformBundle:Teacher');
+
+        $lessons = $em->findAll();
+        $listConflict = array();
+
+        //lessons devrait être un tableau de Entity\Lesson
+        foreach ($lessons as $l) {
+            foreach ($lessons as $t) {
+
+                $r1=$l->getRoom();
+                $r2=$t->getRoom();
+                $t1=$l->getTeacher();
+                $t2=$t->getTeacher();
+                if($r1!=null and $r2!=null and $t1!=null and $t2!=null){
+                    if (($l->getStart() == $t->getStart() || $l->getEnd() == $t->getEnd())
+                        and $r1->getId() == $r2->getId() and $t1->getId() != $t2->getId()
+                    ) {
+
+                        $text="Il y a un conflit pour la salle ".$r1->getName()." le ".date_format($l->getStart(),'d-m-Y')."\n Mr/Mme ".$t1->getShortname()." et Mr/Mme ".$t2->getShortname()." sont priés de modifier l'emplacement de leurs cours";
+                        $listConflict[] =$text;
+
+                    }
+                }
+            }
+        }
+        return $listConflict;
+    }
+    public function getGroupProblem()
+    {
+        $em = $this->getDoctrine()->getManager()->getRepository('OCPlatformBundle:Lesson');
+        $room= $this->getDoctrine()->getManager()->getRepository('OCPlatformBundle:Room');
+        $teacher = $this->getDoctrine()->getManager()->getRepository('OCPlatformBundle:Teacher');
+
+        $lessons = $em->findAll();
+        $listConflict = array();
+
+        //lessons devrait être un tableau de Entity\Lesson
+        foreach ($lessons as $l) {
+            foreach ($lessons as $t) {
+
+                $g1=$l->getGroupe();
+                $g2=$t->getGroupe();
+                $t1=$l->getTeacher();
+                $t2=$t->getTeacher();
+                if($g1!=null and $g2!=null and $t1!=null and $t2!=null){
+                    if (($l->getStart() == $t->getStart() || $l->getEnd() == $t->getEnd())
+                        and $g1->getId() == $g2->getId() and $t1->getId() != $t2->getId()
+                    ) {
+
+                        $text="Il y a un conflit concernant le groupe ".$g1->getName()." le ".date_format($l->getStart(),'d-m-Y')."\n Mr/Mme ".$t1->getShortname()." et Mr/Mme ".$t2->getShortname()." sont priés de modifier l'emplacement de leurs cours";
+                        $listConflict[] =$text;
+
+                    }
+                }
+            }
+        }
+        return $listConflict;
+    }
   public function menuAction()
   {
     // On fixe en dur une liste ici, bien entendu par la suite on la récupérera depuis la BDD !
@@ -135,17 +199,30 @@ class AdvertController extends Controller
       $em = $this->getDoctrine()->getEntityManager();
       $doublon=new Etudiant();
       $matiere="";
+
       foreach ($eleveAbs as $eleve){
           $etudiant=$em->getRepository('OCPlatformBundle:Etudiant')->find($eleve['etudiant_id']);
           $etudiant->setGender($eleve['module']);
           if ($doublon->getId()!=$etudiant->getId() or $matiere!=$eleve['module'])
           {
               $tabEtudiant[]=$etudiant;
-
           }
           $doublon=$etudiant;
           $matiere=$eleve['module'];
 
+      }
+
+
+//--------------------------------------------------------------------------------------------------------------------------------
+      $sameRoom=$this->getRoomProblem();
+      foreach ($sameRoom as $room){
+          print_r($room);
+          break;
+      }
+      $sameGroupe=$this->getGroupProblem();
+      foreach ($sameGroupe as $room){
+          print_r($room);
+          break;
       }
 
 
