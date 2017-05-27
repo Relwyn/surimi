@@ -222,7 +222,7 @@ class AdvertController extends Controller
       $sameGroupe=$this->getGroupProblem();
       foreach ($sameGroupe as $room){
           print_r($room);
-
+          break;
       }
 
 
@@ -232,6 +232,7 @@ class AdvertController extends Controller
           'linechart' => $ob,
           'salle' => $salle,
           'absences' =>$tabEtudiant,
+
       ));
   }
 
