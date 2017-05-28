@@ -81,16 +81,15 @@
 <!-- Top content -->
 <div class="top-content menu-container section-container">
     <div class="container">
-
         <div class="row">
             <div class="col-sm-6 r-form-1-box wow fadeInLeft">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Étudiants avec un taux supérieur à 6% d'absences</a>
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Étudiants avec un taux supérieur à 6% d'absences (cliquer pour étendre)</a>
                         </h4>
                     </div>
-                    <div id="collapseOne" class="panel-collapse collapse in">
+                    <div id="collapseOne" class="panel-collapse collapse">
                         <div class="panel-body">
                             {% for value in absences %}
                                 <p style="color: black">{{ value }}</p>
@@ -102,7 +101,7 @@
 
 
             <div class="col-sm-7 text wow fadeInUp">
-                <h1 style="color: white">Tableau de bord</h1>
+                <h1 style="color: black">Tableau de bord</h1>
                 <div class="description">
                     <p class="medium-paragraph">
                          <br>
@@ -118,8 +117,7 @@
 </div>
 
 
-<!-- Features -->
-<div class="graphique-container section-container-gray-bg">
+<div class="graphique-container section-container">
     <div class="container">
         <div class="row">
             <div class="col-sm-12 features section-description wow fadeIn">
