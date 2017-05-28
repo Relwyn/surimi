@@ -223,8 +223,7 @@ class AdvertController extends Controller
       $em = $this->getDoctrine()->getEntityManager();
       foreach ($eleveAbs as $eleve){
           $etudiant=$em->getRepository('OCPlatformBundle:Etudiant')->find($eleve['etudiant_id']);
-
-          $tabEtudiant[] = $etudiant->getFname()." ".$etudiant->getLname()."dans le module ".$eleve['module'];
+          $tabEtudiant[] = strtoupper($etudiant->getLname()) . " " . ucfirst($etudiant->getFname()) ." dans le module ".$eleve['module'];
       }
       $tabEtudiant=array_unique($tabEtudiant);
 //--------------------------------------------------------------------------------------------------------------------------------
@@ -233,7 +232,7 @@ class AdvertController extends Controller
       $sameRoom= array_unique($sameRoom);
 
       foreach ($sameRoom as $room){
-          $roomHtml = $roomHtml."<div class='alert'>".$room."</div>";
+          $roomHtml = $roomHtml."<div class='alert alert-warning'>".$room."</div>";
       }
       $roomHtml=$roomHtml."</div>";
 
@@ -242,7 +241,7 @@ class AdvertController extends Controller
       $sameGroupe= array_unique($sameGroupe);
 
       foreach ($sameGroupe as $groupe){
-          $groupeHtml = $groupeHtml."<div class='alert'>".$groupe."</div>";
+          $groupeHtml = $groupeHtml."<div class='alert alert-warning'>".$groupe."</div>";
       }
       $groupeHtml =$groupeHtml. "</div>";
 
@@ -251,7 +250,7 @@ class AdvertController extends Controller
       $sameMoment= array_unique($sameMoment);
 
       foreach ($sameMoment as $moment){
-          $momentHtml = $momentHtml."<div class='alert'>".$moment."</div>";
+          $momentHtml = $momentHtml."<div class='alert alert-warning'>".$moment."</div>";
 
       }
       $momentHtml =$momentHtml."</div>";

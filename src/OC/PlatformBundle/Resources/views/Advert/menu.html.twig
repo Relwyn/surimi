@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Faby - Bootstrap Landing Page</title>
+    <title>IUT Lens - Dashboard</title>
 
 
     <!-- inclusion du style CSS de base -->
@@ -69,8 +69,9 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="top-navbar-1">
             <ul class="nav navbar-nav navbar-right">
-                <li><a class="scroll-link" href="#menu">MENU</a></li>
-                <li><a class="scroll-link" href="#features">GRAPHE</a></li>
+                <li><a class="scroll-link" href="#menu">Menu</a></li>
+                <li><a class="scroll-link" href="#graphique">Graphique</a></li>
+                <li><a class="scroll-link" href="#alertes">Alertes</a></li>
             </ul>
         </div>
     </div>
@@ -82,25 +83,24 @@
     <div class="container">
 
         <div class="row">
-
-            <div class="col-sm-5 r-form-1-box wow fadeInLeft">
-                <div class="r-form-1-top">
-                    <div class="r-form-1-top-left">
-                        <h3>Etudiants avec un taux supérieur à 6% d'absences</h3>
-                        <p></p>
-
-
+            <div class="col-sm-6 r-form-1-box wow fadeInLeft">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Étudiants avec un taux supérieur à 6% d'absences</a>
+                        </h4>
                     </div>
-                    <div class="r-form-1-top-right">
-                        <i class="fa fa-pencil"></i>
+                    <div id="collapseOne" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            {% for value in absences %}
+                                <p style="color: black">{{ value }}</p>
+                            {% endfor %}
+                        </div>
                     </div>
-                </div>
-                <div class="r-form-1-bottom">
-                    {% for value in absences %}
-                        <p>{{ value }}</p>
-                    {% endfor %}
                 </div>
             </div>
+
+
             <div class="col-sm-7 text wow fadeInUp">
                 <h1>Tableau de bord</h1>
                 <div class="description">
@@ -112,13 +112,14 @@
                     <a class="btn btn-warning" href="/platform/dashboard">Retour au menu <i class="fa fa-angle-right"></i> </a>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
 
 
 <!-- Features -->
-<div class="features-container section-container-gray-bg">
+<div class="graphique-container section-container-gray-bg">
     <div class="container">
         <div class="row">
             <div class="col-sm-12 features section-description wow fadeIn">
@@ -142,19 +143,14 @@
 
 
 {#<!-- More features -->#}
-<div class="more-features-container section-container">
+<div class="alertes-container section-container">
     <div class="container">
         <div class="row">
             <div class="col-sm-12 more-features section-description wow fadeIn">
                 <h2>Alertes</h2>
-                {#<div class="divider-1">#}
-                    {#<div class="line"></div>#}
-                {#</div>#}
-                <p class="medium-paragraph">: </p>
             </div>
         </div>
         <div class="row">
-
             {{ roomHtml|raw }}
 
             {{ groupeHtml|raw }}
@@ -179,6 +175,7 @@
 <script src="{{ asset('bundles/ocplatform/assets/js/wow.min.js') }}"></script>
 <script src="{{ asset('bundles/ocplatform/assets/js/retina-1.1.0.min.js') }}"></script>
 <script src="{{ asset('bundles/ocplatform/assets/js/scripts.js') }}"></script>
+<script src="{{ asset('bundles/ocplatform/assets/js/panel_collapse.js') }}"></script>
 <!--[if lt IE 10]>
 <script src="{{ asset('bundles/ocplatform/assets/js/placeholder.js') }}"></script>
 <![endif]-->

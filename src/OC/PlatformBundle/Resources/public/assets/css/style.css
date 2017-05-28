@@ -452,6 +452,20 @@ footer a:hover, footer a:focus { border-bottom: 1px dotted #e38f42; outline: 0; 
 	border-top: 1px solid #e8e8e8;
 }
 
+.row{
+	margin-top:40px;
+	padding: 0 10px;
+}
+
+.clickable{
+	cursor: pointer;
+}
+
+.panel-heading span {
+	margin-top: -20px;
+	font-size: 15px;
+}
+
 .footer-menu {
 	margin-top: 30px;
 	padding-top: 30px;
