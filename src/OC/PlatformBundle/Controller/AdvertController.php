@@ -32,16 +32,14 @@ class AdvertController extends Controller
         foreach ($lessons as $l) {
             foreach ($lessons as $t) {
 
-                $r1=$l->getRoom();
-                $r2=$t->getRoom();
                 $t1=$l->getTeacher();
                 $t2=$t->getTeacher();
-                if($r1!=null and $r2!=null and $t1!=null and $t2!=null){
+                if($t1!=null and $t2!=null){
                     if (($l->getStart() == $t->getStart() || $l->getEnd() == $t->getEnd())
-                        and $r1->getId() == $r2->getId() and $t1->getId() != $t2->getId()
+                        and $t1->getId() == $t2->getId()
                     ) {
 
-                        $text="Il y a un conflit pour la salle ".$r1->getName()." le ".date_format($l->getStart(),'d-m-Y')."\n Mr/Mme ".$t1->getShortname()." et Mr/Mme ".$t2->getShortname()." sont priés de modifier l'emplacement de leurs cours";
+                        $text="Deux cours de Mr/Mme ".$t1->getShortname()." se déroulent au même moment le ".date_format($l->getStart(),'d-m-Y')."\n Le professeur concerné est donc prié de déplacer l'un de ses cours.";
                         $listConflict[] =$text;
 
                     }
@@ -253,9 +251,16 @@ class AdvertController extends Controller
       }
       $sameGroupe=$this->getGroupProblem();
       $sameGroupe= array_unique($sameGroupe);
-      foreach ($sameGroupe as $room){
-          print_r($room);
+      foreach ($sameGroupe as $groupe){
+          print_r($groupe);
 
+      }
+
+      $sameMoment=$this->getTeacherProblem();
+      $sameMoment= array_unique($sameMoment);
+      foreach ($sameMoment as $moment){
+          print_r($moment);
+          break;
       }
 
 
