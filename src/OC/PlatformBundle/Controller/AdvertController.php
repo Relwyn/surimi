@@ -19,6 +19,37 @@ use OC\PlatformBundle\Entity\Lesson;
 
 class AdvertController extends Controller
 {
+    public function getTeacherProblem()
+    {
+        $em = $this->getDoctrine()->getManager()->getRepository('OCPlatformBundle:Lesson');
+        $room= $this->getDoctrine()->getManager()->getRepository('OCPlatformBundle:Room');
+        $teacher = $this->getDoctrine()->getManager()->getRepository('OCPlatformBundle:Teacher');
+
+        $lessons = $em->findAll();
+        $listConflict = array();
+
+        //lessons devrait être un tableau de Entity\Lesson
+        foreach ($lessons as $l) {
+            foreach ($lessons as $t) {
+
+                $r1=$l->getRoom();
+                $r2=$t->getRoom();
+                $t1=$l->getTeacher();
+                $t2=$t->getTeacher();
+                if($r1!=null and $r2!=null and $t1!=null and $t2!=null){
+                    if (($l->getStart() == $t->getStart() || $l->getEnd() == $t->getEnd())
+                        and $r1->getId() == $r2->getId() and $t1->getId() != $t2->getId()
+                    ) {
+
+                        $text="Il y a un conflit pour la salle ".$r1->getName()." le ".date_format($l->getStart(),'d-m-Y')."\n Mr/Mme ".$t1->getShortname()." et Mr/Mme ".$t2->getShortname()." sont priés de modifier l'emplacement de leurs cours";
+                        $listConflict[] =$text;
+
+                    }
+                }
+            }
+        }
+        return $listConflict;
+    }
     public function getRoomProblem()
     {
         $em = $this->getDoctrine()->getManager()->getRepository('OCPlatformBundle:Lesson');
@@ -215,14 +246,16 @@ class AdvertController extends Controller
 
 //--------------------------------------------------------------------------------------------------------------------------------
       $sameRoom=$this->getRoomProblem();
+      $sameRoom= array_unique($sameRoom);
       foreach ($sameRoom as $room){
           print_r($room);
 
       }
       $sameGroupe=$this->getGroupProblem();
+      $sameGroupe= array_unique($sameGroupe);
       foreach ($sameGroupe as $room){
           print_r($room);
-          break;
+
       }
 
 
