@@ -74,6 +74,7 @@ class AdvertController extends Controller
     }
     public function getGroupProblem()
     {
+        $html="<div class='container'>";
         $em = $this->getDoctrine()->getManager()->getRepository('OCPlatformBundle:Lesson');
         $room= $this->getDoctrine()->getManager()->getRepository('OCPlatformBundle:Room');
         $teacher = $this->getDoctrine()->getManager()->getRepository('OCPlatformBundle:Teacher');
@@ -95,12 +96,14 @@ class AdvertController extends Controller
                     ) {
 
                         $text="Il y a un conflit concernant le groupe ".$g1->getName()." le ".date_format($l->getStart(),'d-m-Y')."\n Mr/Mme ".$t1->getShortname()." et Mr/Mme ".$t2->getShortname()." sont priés de modifier l'emplacement de leurs cours";
+                        $html=$html."<div class='alert'>".$text."</div>";
                         $listConflict[] =$text;
 
                     }
                 }
             }
         }
+        $html=$html."</div>";
         return $listConflict;
     }
   public function menuAction()
