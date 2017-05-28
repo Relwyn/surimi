@@ -25,10 +25,7 @@ jQuery(document).ready(function() {
     /*
         Background slideshow
     */
-    $('.top-content').backstretch("/bundles/ocplatform/assets/img/backgrounds/1.jpg");
-    $('.testimonials-container').backstretch("/bundles/ocplatform/assets/img/backgrounds/2.jpg");
-    $('.call-to-action-container').backstretch("/bundles/ocplatform/assets/img/backgrounds/1.jpg");
-    $('.about-us-container').backstretch("/bundles/ocplatform/assets/img/backgrounds/2.jpg");
+    $('#bod').backstretch("//bundles/ocplatform/assets/img/backgrounds/crossword.png");
 
     $('a[data-toggle="tab"]').on('shown.bs.tab', function(){
     	$('.testimonials-container').backstretch("resize");
