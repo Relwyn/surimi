@@ -9,13 +9,6 @@ use OC\PlatformBundle\Entity\Etudiant;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Ob\HighchartsBundle\Highcharts\Highchart;
 
-use Doctrine\ORM\QueryBuilder;
-use Doctrine\ORM\EntityRepository;
-use Zend\Json\Expr;
-use Ob\HighchartsBundle\DependencyInjection\ObHighchartsExtension;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use OC\PlatformBundle\Entity\Lesson;
 
 class AdvertController extends Controller
 {
@@ -247,13 +240,13 @@ class AdvertController extends Controller
       $sameRoom= array_unique($sameRoom);
       foreach ($sameRoom as $room){
           print_r($room);
-
+          break;
       }
       $sameGroupe=$this->getGroupProblem();
       $sameGroupe= array_unique($sameGroupe);
       foreach ($sameGroupe as $groupe){
           print_r($groupe);
-
+          break;
       }
 
       $sameMoment=$this->getTeacherProblem();
