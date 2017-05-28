@@ -15,7 +15,7 @@ class AdvertController extends Controller
     public function getTeacherProblem()
     {
         $em = $this->getDoctrine()->getManager()->getRepository('OCPlatformBundle:Lesson');
-        $room= $this->getDoctrine()->getManager()->getRepository('OCPlatformBundle:Room');
+        $room = $this->getDoctrine()->getManager()->getRepository('OCPlatformBundle:Room');
         $teacher = $this->getDoctrine()->getManager()->getRepository('OCPlatformBundle:Teacher');
 
         $lessons = $em->findAll();
@@ -231,6 +231,7 @@ class AdvertController extends Controller
       $roomHtml = "<div class = col-md-4>";
       $sameRoom=$this->getRoomProblem();
       $sameRoom= array_unique($sameRoom);
+
       foreach ($sameRoom as $room){
           $roomHtml = $roomHtml."<div class='alert'>".$room."</div>";
       }
@@ -239,6 +240,7 @@ class AdvertController extends Controller
       $groupeHtml = "<div class = col-md-4>";
       $sameGroupe=$this->getGroupProblem();
       $sameGroupe= array_unique($sameGroupe);
+
       foreach ($sameGroupe as $groupe){
           $groupeHtml = $groupeHtml."<div class='alert'>".$groupe."</div>";
       }
@@ -247,6 +249,7 @@ class AdvertController extends Controller
       $momentHtml = "<div class = col-md-4>";
       $sameMoment=$this->getTeacherProblem();
       $sameMoment= array_unique($sameMoment);
+
       foreach ($sameMoment as $moment){
           $momentHtml = $momentHtml."<div class='alert'>".$moment."</div>";
 
