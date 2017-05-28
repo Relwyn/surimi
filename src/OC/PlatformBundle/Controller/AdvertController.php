@@ -74,7 +74,7 @@ class AdvertController extends Controller
     }
     public function getGroupProblem()
     {
-        $html="<div class='container'>";
+
         $em = $this->getDoctrine()->getManager()->getRepository('OCPlatformBundle:Lesson');
         $room= $this->getDoctrine()->getManager()->getRepository('OCPlatformBundle:Room');
         $teacher = $this->getDoctrine()->getManager()->getRepository('OCPlatformBundle:Teacher');
@@ -96,14 +96,13 @@ class AdvertController extends Controller
                     ) {
 
                         $text="Il y a un conflit concernant le groupe ".$g1->getName()." le ".date_format($l->getStart(),'d-m-Y')."\n Mr/Mme ".$t1->getShortname()." et Mr/Mme ".$t2->getShortname()." sont priés de modifier l'emplacement de leurs cours";
-                        $html=$html."<div class='alert'>".$text."</div>";
                         $listConflict[] =$text;
 
                     }
                 }
             }
         }
-        $html=$html."</div>";
+
         return $listConflict;
     }
   public function menuAction()
@@ -222,43 +221,37 @@ class AdvertController extends Controller
       }
       $tabEtudiant=array();
       $em = $this->getDoctrine()->getEntityManager();
-      $doublon=new Etudiant();
-      $matiere="";
-
       foreach ($eleveAbs as $eleve){
           $etudiant=$em->getRepository('OCPlatformBundle:Etudiant')->find($eleve['etudiant_id']);
-          $etudiant->setGender($eleve['module']);
-          if ($doublon->getId()!=$etudiant->getId() or $matiere!=$eleve['module'])
-          {
-              $tabEtudiant[]=$etudiant;
-          }
-          $doublon=$etudiant;
-          $matiere=$eleve['module'];
 
+          $tabEtudiant[] = $etudiant->getFname()." ".$etudiant->getLname()."dans le module ".$eleve['module'];
       }
-
-
+      $tabEtudiant=array_unique($tabEtudiant);
 //--------------------------------------------------------------------------------------------------------------------------------
+      $roomHtml = "<div class = col-md-4>";
       $sameRoom=$this->getRoomProblem();
       $sameRoom= array_unique($sameRoom);
       foreach ($sameRoom as $room){
-          print_r($room);
-          break;
+          $roomHtml = $roomHtml."<div class='alert'>".$room."</div>";
       }
+      $roomHtml=$roomHtml."</div>";
+
+      $groupeHtml = "<div class = col-md-4>";
       $sameGroupe=$this->getGroupProblem();
       $sameGroupe= array_unique($sameGroupe);
       foreach ($sameGroupe as $groupe){
-          print_r($groupe);
-          break;
+          $groupeHtml = $groupeHtml."<div class='alert'>".$groupe."</div>";
       }
+      $groupeHtml =$groupeHtml. "</div>";
 
+      $momentHtml = "<div class = col-md-4>";
       $sameMoment=$this->getTeacherProblem();
       $sameMoment= array_unique($sameMoment);
       foreach ($sameMoment as $moment){
-          print_r($moment);
-          break;
-      }
+          $momentHtml = $momentHtml."<div class='alert'>".$moment."</div>";
 
+      }
+      $momentHtml =$momentHtml."</div>";
 
 //--------------------------------------------------------------------------------------------------------------------------------
 
@@ -266,6 +259,9 @@ class AdvertController extends Controller
           'linechart' => $ob,
           'salle' => $salle,
           'absences' =>$tabEtudiant,
+          'groupeHtml' => $groupeHtml,
+          'momentHtml' => $momentHtml,
+          'roomHtml'  => $roomHtml,
 
       ));
   }
